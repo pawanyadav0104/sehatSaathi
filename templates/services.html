@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SehatSaathi - Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  </head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sehat-navbar">
+      <div class="container">
+        <img class="logo-img" src="{{ url_for('static', filename='SehatSaathi.png') }}" alt="logo">
+        <a class="navbar-brand ms-2" href="/">SehatSaathi</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Section -->
+   <div class="container my-5">
+  <div class="card shadow rounded-4 p-4 mx-auto" style="max-width: 600px; background: #f8f9fa;">
+    <h2 class="text-center fw-bold mb-4" style="color:#dc3545;">Disease Prediction</h2>
+
+    <form action="/services" method="post">
+      <div class="mb-3">
+        <label for="symptoms" class="form-label fw-semibold">Enter Symptoms</label>
+        <input type="text" class="form-control" id="symptoms" name="symptoms"
+               placeholder="e.g. itching, headache, fever" required>
+      </div>
+
+      <div class="d-flex mb-3 align-items-center">
+        <button type="button" id="startSpeechRecognition"
+                class="btn btn-outline-primary rounded-pill me-3">
+          🎤 Speak
+        </button>
+        <div id="transcription" class="flex-grow-1 p-2 border rounded bg-white"></div>
+      </div>
+
+      {% if message %}
+        <div class="alert alert-danger py-2">{{ message }}</div>
+      {% endif %}
+
+      <button type="submit" class="btn btn-danger btn-lg w-100 rounded-pill fw-bold">
+        Predict
+      </button>
+    </form>
+  </div>
+</div>
+
+
+    {% if predicted_disease %}
+    <!-- Results Section -->
+    <h2 class="text-center my-4">AI Prediction Results</h2>
+    <div class="container text-center result-container">
+        <button data-bs-toggle="modal" data-bs-target="#diseaseModal" class="btn btn-info">Disease</button>
+        <button data-bs-toggle="modal" data-bs-target="#descriptionModal" class="btn btn-secondary">Description</button>
+        <button data-bs-toggle="modal" data-bs-target="#precautionModal" class="btn btn-warning">Precaution</button>
+        <button data-bs-toggle="modal" data-bs-target="#medicationsModal" class="btn btn-success">Medications</button>
+        <button data-bs-toggle="modal" data-bs-target="#workoutsModal" class="btn btn-dark">Workouts</button>
+        <button data-bs-toggle="modal" data-bs-target="#dietsModal" class="btn btn-primary">Diets</button>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal fade" id="diseaseModal" tabindex="-1">
+      <div class="modal-dialog"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Predicted Disease</h5></div>
+        <div class="modal-body"><p>{{ predicted_disease }}</p></div>
+      </div></div>
+    </div>
+
+    <div class="modal fade" id="descriptionModal" tabindex="-1">
+      <div class="modal-dialog"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Description</h5></div>
+        <div class="modal-body"><p>{{ dis_des }}</p></div>
+      </div></div>
+    </div>
+
+    <div class="modal fade" id="precautionModal" tabindex="-1">
+      <div class="modal-dialog"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Precautions</h5></div>
+        <div class="modal-body">
+          <ul>{% for p in my_precautions %}<li>{{ p }}</li>{% endfor %}</ul>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="modal fade" id="medicationsModal" tabindex="-1">
+      <div class="modal-dialog"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Medications</h5></div>
+        <div class="modal-body">
+          <ul>{% for m in medications %}<li>{{ m }}</li>{% endfor %}</ul>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="modal fade" id="workoutsModal" tabindex="-1">
+      <div class="modal-dialog"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Workouts</h5></div>
+        <div class="modal-body">
+          <ul>{% for w in workout_plan %}<li>{{ w }}</li>{% endfor %}</ul>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="modal fade" id="dietsModal" tabindex="-1">
+      <div class="modal-dialog"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Diets</h5></div>
+        <div class="modal-body">
+          <ul>{% for d in my_diet %}<li>{{ d }}</li>{% endfor %}</ul>
+        </div>
+      </div></div>
+    </div>
+    {% endif %}
+
+    <!-- Footer -->
+    <footer class="text-center py-4 mt-5 gradient-footer text-white">
+  <p>&copy; 2025 SehatSaathi | All Rights Reserved</p>
+
+  <p>Made with <i class="fa-solid fa-heart text-danger"></i> for better healthcare</p>
+
+  <p class="mt-2">Developed by <strong>Pawan</strong></p>
+
+  <div class="mt-2">
+    <!-- GitHub -->
+    <a href="https://github.com/pawanyadav0104" target="_blank" class="me-3" style="color:#333;">
+      <i class="fab fa-github fa-lg"></i>
+    </a>
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/pawan0104" target="_blank" class="me-3" style="color:#0A66C2;">
+      <i class="fab fa-linkedin-in fa-lg"></i>
+    </a>
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/pawanyadav0104?igsh=MTJ0Nmd6YnJreG0ydg==" target="_blank" style="color:#E4405F;">
+      <i class="fab fa-instagram fa-lg"></i>
+    </a>
+  </div>
+</footer>
+    <!-- Scripts -->
+    <script>
+      const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
+      const transcriptionDiv = document.getElementById('transcription');
+      if(startSpeechRecognitionButton){
+          startSpeechRecognitionButton.addEventListener('click', function(){
+              const recognition = new webkitSpeechRecognition();
+              recognition.lang = 'en-US';
+              recognition.onresult = function (event) {
+                  transcriptionDiv.textContent = event.results[0][0].transcript;
+                  document.getElementById('symptoms').value = event.results[0][0].transcript;
+              };
+              recognition.start();
+          });
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

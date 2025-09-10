@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Blog - SehatSaathi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+      .blog-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .blog-card img {
+        object-fit: cover;
+        height: 180px;
+        width: 100%;
+      }
+      .blog-card .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#">SehatSaathi</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Blog Section -->
+    <section class="container py-5">
+      <h2 class="text-center mb-4">Latest Health Articles (2025)</h2>
+      <div class="row g-4">
+
+        <!-- Card 1 -->
+        <div class="col-md-4">
+          <div class="card blog-card">
+
+            <div class="card-body">
+              <h5 class="card-title">7 Eating Tips for Healthier Aging</h5>
+              <p class="card-text">Dietary strategies supported by recent studies to promote longevity and healthy aging.</p>
+              <a href="https://www.health.com/7-eating-tips-from-2025-for-healthier-aging-11795538" class="btn btn-primary mt-2" target="_blank">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4">
+          <div class="card blog-card">
+
+            <div class="card-body">
+              <h5 class="card-title">The Science of Longevity</h5>
+              <p class="card-text">Explore new research and practical steps to increase lifespan and healthspan.</p>
+              <a href="https://www.health.com/science-of-longevity-11796962" class="btn btn-primary mt-2" target="_blank">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4">
+          <div class="card blog-card">
+            <div class="card-body">
+              <h5 class="card-title">Boost Heart Health Naturally</h5>
+              <p class="card-text">Learn lifestyle habits to reduce your risk of heart disease naturally.</p>
+              <a href="https://timesofindia.indiatimes.com/life-style/health-fitness/health-news/boost-heart-health-13-proven-lifestyle-habits-to-reduce-your-risk-of-heart-disease-naturally/articleshow/123517165.cms" class="btn btn-primary mt-2" target="_blank">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-4">
+          <div class="card blog-card">
+            <div class="card-body">
+              <h5 class="card-title">Preventing Heart Disease</h5>
+              <p class="card-text">Experts suggest lifestyle changes and early medication can prevent heart disease.</p>
+              <a href="https://nypost.com/2025/08/20/health/ditching-alcohol-medicating-sooner-could-prevent-this-disease-experts-believe/" class="btn btn-primary mt-2" target="_blank">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col-md-4">
+          <div class="card blog-card">
+            <div class="card-body">
+              <h5 class="card-title">Cardiologist's Longevity Tips</h5>
+              <p class="card-text">A cardiologist reveals three things they do to live a longer life.</p>
+              <a href="https://timesofindia.indiatimes.com/life-style/health-fitness/health-news/cardiologist-reveals-three-things-they-do-to-live-a-longer-life/articleshow/123486936.cms" class="btn btn-primary mt-2" target="_blank">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col-md-4">
+          <div class="card blog-card">
+            <div class="card-body">
+              <h5 class="card-title">Public Health Expert Goes Viral</h5>
+              <p class="card-text">Jessica Knurick delivers a simple message to counter health misinformation.</p>
+              <a href="https://www.vox.com/health/458966/maha-movement-jessica-knurick-tiktok-instagram" class="btn btn-primary mt-2" target="_blank">Read More</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 mt-5 gradient-footer text-white">
+  <p>&copy; 2025 SehatSaathi | All Rights Reserved</p>
+
+  <p>Made with <i class="fa-solid fa-heart text-danger"></i> for better healthcare</p>
+
+  <p class="mt-2">Developed by <strong>Pawan</strong></p>
+
+  <div class="mt-2">
+    <!-- GitHub -->
+    <a href="https://github.com/pawanyadav0104" target="_blank" class="me-3" style="color:#333;">
+      <i class="fab fa-github fa-lg"></i>
+    </a>
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/pawan0104" target="_blank" class="me-3" style="color:#0A66C2;">
+      <i class="fab fa-linkedin-in fa-lg"></i>
+    </a>
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/pawanyadav0104?igsh=MTJ0Nmd6YnJreG0ydg==" target="_blank" style="color:#E4405F;">
+      <i class="fab fa-instagram fa-lg"></i>
+    </a>
+  </div>
+</footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
